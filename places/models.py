@@ -5,7 +5,7 @@ from django.db import models
 
 class Place(models.Model):
     name  = models.CharField(max_length = 40,verbose_name = "名字")
-    address = models.CharField(max_length = 60, verbose_name = "地址")
+    address = models.TextField(verbose_name = "地址")
     openhours = models.CharField(max_length = 40, verbose_name = "开放时间")
     ticketInfo = models.CharField(max_length = 40, verbose_name = "门票信息")
     recommandTime = models.CharField(max_length = 40, verbose_name = "推荐时长")
