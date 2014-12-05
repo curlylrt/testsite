@@ -1,0 +1,9 @@
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'partition'%}" method="post">
+{% csrf_token %}
+{% for place in place_list %}
+    <input type="checkbox" name="choice" id="{{ place.id }}" value="{{ place.id }}">{{ place.name}}<br>
+{% endfor %}
+<input type="submit" value="Submit" />
+</form>
