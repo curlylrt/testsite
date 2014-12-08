@@ -5,5 +5,7 @@
 {% for place in place_list %}
     <input type="checkbox" name="choice" id="{{ place.id }}" value="{{ place.id }}">{{ place.name}}<br>
 {% endfor %}
+Time limit for one day:
+<input type="number" name="limit" />
 <input type="submit" value="Submit" />
 </form>
