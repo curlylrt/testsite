@@ -14,6 +14,7 @@ def index(request):
 def detail(request, place_id):
     try:
         place = Place.objects.get(pk=place_id)
+        image_list = place.images.all();
     except Place.DoesNotExist:
         raise Http404
-    return render(request, 'places/detail.html', {'place': place})
+    return render(request, 'places/detail.html', {'place': place,'image_list':image_list})

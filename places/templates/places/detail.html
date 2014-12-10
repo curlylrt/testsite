@@ -8,4 +8,9 @@
 <li>景点介绍：{{place.intro}}</li>
 <li>旅行小贴士：{{place.tips}}</li>
 <li>网友经验：{{place.experience}}</li>
+{% if image_list  %}
+{% for image in image_list %}
+<p> <img src="{{STATIC_URL }}images/{{image.image.name}}"/></p>
+{% endfor %}
+{% endif %}
 </ul>
