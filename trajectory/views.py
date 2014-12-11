@@ -35,9 +35,9 @@ def get_place_address(dictionary, key):
     return dictionary.get(key).address
 
 def partition(request):
+    global output
+    output = ""
     if request.method == 'POST':
-        global output
-        output = ""
         edges = list()
         vertices = request.POST.getlist('choice')
         limit = request.POST.get('limit')
@@ -60,6 +60,10 @@ def partition(request):
         output += "<br>vertice: <br>" + str(vertices) + "<br>egdes: <br>" + str(edges)
         return HttpResponse(output)
         '''
+    elif request.method == 'GET':
+        vertices = request.GET.getlist('choice')
+        output += "<br>request: <br>" + str(vertices)
+        return HttpResponse(output)
     raise Http404
 
 

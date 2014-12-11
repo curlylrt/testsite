@@ -15,20 +15,18 @@
     <script lang="javascript" src="{{ STATIC_URL }}js/my.js"></script>
     <script lang="javascript">
         function init() {
-        stick(".sticky");
+            stick(".sticky");
         
-        $(".toggleBtn").click(function () {
-            $(".toggleDiv").toggle("fold", { horizFirst: true});
-        });
-}
+            $(".toggleBtn").click(function () {
+                $(".toggleDiv").toggle("fold", { horizFirst: true});
+            });
+        }
         $(document).ready(init);
-                
-                function rating(e) {
-                        alert(e.id);
-                }
-                
-                function addToMenu(e) {
-                        e.disabled = true;
+        function rating(e) {
+            alert(e.id);
+        }
+        function addToMenu(e) {
+            e.disabled = true;
             addToList('bottom', e.name, e.id, 10);
         }
     </script>
@@ -78,8 +76,11 @@
             <div class="sticky">
         <button type="button" class="toggleBtn">Toggle</button>
         <div class="toggleDiv">
+        <form action="{% url 'partition'%}" method="post">
+        {% csrf_token %}
             <table id="list"></table>
-            <input type="button" id="cal" value="规">
+            <input type="submit" id="cal" value="规">
+        <form>
         </div>
         <p style="font-size: large;">The list now has <span id="numberOfItems">0</span> places.</p>
     </div>
@@ -95,13 +96,13 @@
         <tr>
             <td>{{ place.name }}</td>
             <td>
-                <input type="button" name="{{ place.name }}" id="btn{{ forloop.counter0 }}" value="+加入菜单" onclick="addToMenu(this)">
+                <input type="button" name="{{ place.name }}" id="{{ place.id }}" value="+加入菜单" onclick="addToMenu(this)">
             </td>
         </tr>
         <tr>
             <td>
                 <div class="starRate">
-                    <div>{{ place.score }}<b></b></div>
+                    <div>评价：{{ place.score }} 分<b></b></div>
                     <ul>
                         <li><a href="#" id="5star" onclick="rating(this)"><span>Give it 5 stars</span></a></li>
                         <li><a href="#" id="4star" onclick="rating(this)"><span>Give it 4 stars</span><b></b></a></li>
@@ -111,10 +112,10 @@
                     </ul>
                 </div>
                 </td>
-            <td>{{ place.recommendTime }}</td>
+            <td>推荐时间：{{ place.recommendTime }}小时</td>
         </tr>
         <tr>
-            <td colspan="2">J大厨 推荐：{{ place.experience }}</td>
+            <td colspan="2"><h4><b>J大厨 推荐：</b></h4>{{ place.experience }}</td>
         </tr>
         </tbody>
         {% endfor %}
