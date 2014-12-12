@@ -30,15 +30,17 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'django.contrib.admin',
+    'django.contrib.admin.apps.SimpleAdminConfig',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'adminplus',
     'places',
     'trajectory',
     'menu',
+    'accounts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -89,3 +91,4 @@ MEDIA_URL = '/static/images/'
 STATIC_ROOT = "/var/www/testsite/static/"
 
 STATIC_URL = '/static/'
+AUTH_USER_MODEL = 'accounts.User'
