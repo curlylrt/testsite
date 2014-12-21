@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery UI Sortable - Portlets</title>
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.11.2/themes/smoothness/jquery-ui.css">
+
+  <script src="//code.jquery.com/jquery-1.10.2.js"></script>
+  <script src="//code.jquery.com/ui/1.11.2/jquery-ui.js"></script>
+  <script lang="javascript" src="{{ STATIC_URL }}js/planresult.js"></script>
+  <link rel="stylesheet" href="/resources/demos/style.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/planresult.css">  
+</head>
+<body>
+{% for entry in sets %}
+    {% with day=forloop.counter %}
+    {% for item in entry %}
+        {% if forloop.counter0 == 0 %}
+            <li><h3>Time: {{ item }}</h3></li<br>
+            <h4>第{{ day }}天</h4> 
+            <div class="row">
+        {% else %}
+ 
+  <div class="portlet">
+    <div class="portlet-header">{{ place_list|get_place_name:item }}</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+<script>
+        addMarker("{{ place_list|get_place_address:item }}", "{{ place_list|get_place_name:item }}", "第{{ day }}天");
+</script>
+        {% endif %}
+    {% endfor %}
+    {% endwith %}
+</div>
+{% endfor %}
+
+<h4>First day</h4> 
+<div class="row">
+ 
+  <div class="portlet">
+    <div class="portlet-header">Feeds</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+  <div class="portlet">
+    <div class="portlet-header">News</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+</div>
+ 
+<h4>Second day</h4> 
+<div class="row">
+ 
+  <div class="portlet">
+    <div class="portlet-header">Shopping</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+</div>
+ 
+<h4>Third day</h4> 
+<div class="row">
+ 
+  <div class="portlet">
+    <div class="portlet-header">Links</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+  <div class="portlet">
+    <div class="portlet-header">Images</div>
+    <div class="portlet-content">Lorem ipsum dolor sit amet, consectetuer adipiscing elit</div>
+  </div>
+ 
+</div>
+ 
+ 
+</body>
+</html>

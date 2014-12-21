@@ -1,8 +1,15 @@
 <!DOCTYPE html "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
- <meta http-equiv="content-type" content="text/html; charset=utf-8" />
- <title>MarkerWithLabel Example</title>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8" />
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js" type="text/javascript"></script> 
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+  <script lang="javascript" src="{{ STATIC_URL }}js/planresult.js"></script>
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui.css">
+  <link rel="stylesheet" href="{{ STATIC_URL }}css/planresult.css">
+
+ <title>Travel Plan</title>
  <style type="text/css">
    .labels {
      color: red;
@@ -18,7 +25,7 @@
 
       #map_canvas {
         height: 100%;
-        width: 100%;
+        width: 45%;
         margin: 0px;
         padding: 0px;
         float: left;
@@ -70,28 +77,11 @@ function initMap() {
  </script>
 </head>
 <body>
- <div id="map_canvas" style="height: 100%; width: 50%"></div>
- <div id="log"></div>
-
+ <div id="map_canvas"></div>
  <script>initMap()</script>
-<div style="float:right">
+<div>
 {% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
-<ol>
-{% for entry in sets %}
-    {% with day=forloop.counter %}
-    {% for item in entry %}
-        {% if forloop.counter0 == 0 %}
-            <li><h3>Time: {{ item }}</h3></li<br>
-        {% else %}
-            <label>Place: {{ place_list|get_place_name:item }}</label><br>
-<script>
-        addMarker("{{ place_list|get_place_address:item }}", "{{ place_list|get_place_name:item }}", "第{{ day }}天");
-</script>
-        {% endif %}
-    {% endfor %}
-    {% endwith %}
-{% endfor %}
-</ol>
+{% include "trajectory/planlist.html" %}
 </div>
 </body>
 </html>

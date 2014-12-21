@@ -34,6 +34,13 @@ def get_place_name(dictionary, key):
 def get_place_address(dictionary, key):
     return dictionary.get(key).address
 
+@register.filter
+def get_place_intro(dictionary, key):
+    return dictionary.get(key).intro
+
+def test(request):
+    return render(request, 'trajectory/test.html')
+
 def partition(request):
     global output
     output = ""

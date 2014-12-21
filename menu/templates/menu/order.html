@@ -1,0 +1,12 @@
+<div class="sticky">
+    <div class="toggleDiv ui-widget-content ui-state-default">
+        <h4 class="ui-widget-header">Order</h4>
+        <form action="{% url 'partition'%}" method="post">
+        {% csrf_token %}
+            <table id="list"></table>
+            <input type="submit" id="cal" value="规">
+        </form>
+        <p style="font-size: large; position: absolute; bottom: 0;">The list now has <span id="numberOfItems">0</span> places.</p>
+    </div>
+    <button type="button" class="toggleBtn">right</button>
+</div>

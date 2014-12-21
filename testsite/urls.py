@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'^places/', include('places.urls')),
     url(r'^admin/', include(admin.site.urls)),
     url(r'^trajectory/', include('trajectory.urls')),
-    url(r'^accounts/', include('accounts.urls', namespace='accounts')),
+    url(r'^accounts/', include('accounts.urls')),
 )

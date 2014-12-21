@@ -6,7 +6,7 @@ class RegistrationForm(forms.ModelForm):
     username = forms.CharField(widget=forms.TextInput,label="User Name")
     email = forms.EmailField(widget=forms.TextInput,label="Email")
     password1 = forms.CharField(widget=forms.PasswordInput,label="Password")
-    password2 = forms.CharField(widget=forms.PasswordInput,label="Password (again)")
+    password2 = forms.CharField(widget=forms.PasswordInput,label="Confirm Password")
 
     class Meta:
         model = User

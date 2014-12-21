@@ -1,0 +1,25 @@
+<div class="planlist">
+
+{% for entry in sets %}
+    {% with day=forloop.counter %}
+    {% for item in entry %}
+        {% if forloop.counter0 == 0 %}
+            <li><h3>Time Needed: {{ item }} seconds</h3></li<br>
+            <h4>第{{ day }}天</h4> 
+            <div class="row">
+        {% else %}
+ 
+  <div class="portlet">
+    <div class="portlet-header">{{ place_list|get_place_name:item }}</div>
+    <div class="portlet-content">{{ place_list|get_place_intro:item }}</div>
+  </div>
+ 
+<script>
+        addMarker("{{ place_list|get_place_address:item }}", "{{ place_list|get_place_name:item }}", "第{{ day }}天");
+</script>
+        {% endif %}
+    {% endfor %}
+    {% endwith %}
+</div>
+{% endfor %}
+<div>
