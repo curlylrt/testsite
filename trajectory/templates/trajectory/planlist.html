@@ -10,7 +10,9 @@
         {% else %}
  
   <div class="portlet">
-    <div class="portlet-header">{{ place_list|get_place_name:item }}</div>
+    {% with name=place_list|get_place_name:item %}
+    <div class="portlet-header" name="{{ name }}">{{ name }}</div>
+    {% endwith %}
     <div class="portlet-content">{{ place_list|get_place_intro:item }}</div>
   </div>
  
