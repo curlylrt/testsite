@@ -35,19 +35,37 @@ def get_place_address(dictionary, key):
     return dictionary.get(key).address
 
 @register.filter
+def get_place_recommendTime(dictionary, key):
+    return dictionary.get(key).recommendTime
+
+@register.filter
 def get_place_intro(dictionary, key):
     return dictionary.get(key).intro
 
 def test(request):
     return render(request, 'trajectory/test.html')
 
+def route(request):
+    if request.method == 'POST':
+        global output
+        output = ""
+        for x in range(1, 24):
+            p = request.POST.getlist(str(x))
+            if p is not None:
+                for item in p:
+                    add = Place.objects.get(pk=item).address
+                    output += "<br>" + add
+            else:
+                break
+        output += "<br>The End"
+        return HttpResponse(output)
+
+
 def partition(request):
-    global output
-    output = ""
     if request.method == 'POST':
         edges = list()
         vertices = request.POST.getlist('choice')
-        limit = request.POST.get('limit')
+        limit = request.POST.get('timeLimit')
         if limit is None:
             limit = 8
         limit = float(limit)
@@ -58,13 +76,16 @@ def partition(request):
         selectedPlace = dict()
         for v in vertices:
             selectedPlace[v] = Place.objects.get(pk=v)
-        context = {'place_list': selectedPlace, 'sets': result}
+        context = {'place_list': selectedPlace, 'sets': result, 'timeLimit': limit}
         return render(request, 'trajectory/result.html', context)
 
         '''
+        global output
+        output = ""
         output += "<br>limit: <br>" + str(limit)
         output += "<br>result: <br>" + str(result)
         output += "<br>vertice: <br>" + str(vertices) + "<br>egdes: <br>" + str(edges)
+        output += "<br>limit: " + str(limit)
         return HttpResponse(output)
         '''
     elif request.method == 'GET':
@@ -75,7 +96,6 @@ def partition(request):
 
 
 def populate_set(vertices, edges):
-    global output
     if vertices:
         for i in range(1, len(vertices)):
             place1 = Place.objects.get(pk=vertices[i]).address

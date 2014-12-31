@@ -4,6 +4,8 @@
         <h4 class="ui-widget-header">Order</h4>
         <form action="{% url 'partition'%}" method="post">
         {% csrf_token %}
+            {{ form.timeLimit }}小时
+            {{ form.method }}
             <table id="list"></table>
             <input type="submit" id="cal" value="规">
         </form>

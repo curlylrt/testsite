@@ -4,7 +4,7 @@
     {% with day=forloop.counter %}
     {% for item in entry %}
         {% if forloop.counter0 == 0 %}
-            <li><h3>Time Needed: {{ item }} seconds</h3></li<br>
+            <li><h3>Time Needed: {{ item }} seconds</h3></li><br>
             <h4>第{{ day }}天</h4> 
             <div class="row">
         {% else %}
@@ -24,4 +24,4 @@
     {% endwith %}
 </div>
 {% endfor %}
-<div>
+</div>
