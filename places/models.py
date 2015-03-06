@@ -13,7 +13,7 @@ class Place(models.Model):
     intro = models.TextField(verbose_name = "景点介绍");
     tips = models.TextField(verbose_name = "旅行小贴士");
     experience = models.TextField(verbose_name = "网友经验");
-    count = models.IntegerField(verbose_name = "总投票数");    
+    count = models.IntegerField(verbose_name = "总投票数", default=10);    
         
     def __unicode__(self):
          return u'%s %s' %(self.name,self.address)

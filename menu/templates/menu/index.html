@@ -71,7 +71,7 @@
        {% for place in place_list %}
         <tbody>
         <tr>
-            <td rowspan="4"><img src="{{STATIC_URL }}images/{{image.image.name}}" height="150px" width="250px" /></td>
+            <td rowspan="4"><img src="{{STATIC_URL }}images/{{place.images.all.0}}" height="150px" width="250px" /></td>
         </tr>
         <tr>
             <td>{{ place.name }}</td>
