@@ -1,0 +1,112 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/rating.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/my.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/order.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+    <link  rel="stylesheet" href="{{ STATIC_URL }}css/carousel.css">
+    <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+
+    <script lang="javascript" src="{{ STATIC_URL }}js/todolist.js"></script>
+    <script lang="javascript" src="{{ STATIC_URL }}js/order.js"></script>
+    <script lang="javascript">
+        function rating(e) {
+            alert(e.id);
+        }
+    </script>
+</head>
+<body id="body">
+
+        
+            <!-- Carousel
+    ================================================== -->
+    <div id="myCarousel" class="carousel slide" data-ride="carousel">
+      <!-- Indicators -->
+      <ol class="carousel-indicators">
+        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+        <li data-target="#myCarousel" data-slide-to="1"></li>
+        <li data-target="#myCarousel" data-slide-to="2"></li>
+      </ol>
+      <div class="carousel-inner">
+        <div class="item active">
+          <img src="{{ STATIC_URL }}res/GoldenGateBridge-001.jpg" alt="First slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="{{ STATIC_URL }}res/Ggb_by_night.jpg" alt="Second slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="item">
+          <img src="{{ STATIC_URL }}res/470360231-580.jpg"  alt="Third slide">
+          <div class="container">
+            <div class="carousel-caption">
+              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
+      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
+    </div><!-- /.carousel -->
+        
+    {% include "menu/order.html" %}
+    
+    <table class="place_table" style="width: 100%" CELLPADDING=6 RULES=GROUPS  FRAME=BOX>
+        <col style="width:20%">
+        <col style="width:40%">
+        <col style="width:40%">
+       {% for place in place_list %}
+        <tbody>
+        <tr>
+            <td rowspan="4"><img src="{{STATIC_URL }}images/{{image.image.name}}" height="150px" width="250px" /></td>
+        </tr>
+        <tr>
+            <td>{{ place.name }}</td>
+            <td>
+                <input type="button" name="{{ place.name }}" id="{{ place.id }}" value="+加入菜单" onclick="addToMenu(this)">
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="starRate">
+                    <div>评价：{{ place.score }} 分<b></b></div>
+                    <ul>
+                        <li><a href="#" id="5star" onclick="rating(this)"><span>Give it 5 stars</span></a></li>
+                        <li><a href="#" id="4star" onclick="rating(this)"><span>Give it 4 stars</span><b></b></a></li>
+                        <li><a href="#" id="3star" onclick="rating(this)"><span>Give it 3 stars</span></a></li>
+                        <li><a href="#" id="2star" onclick="rating(this)"><span>Give it 2 stars</span></a></li>
+                        <li><a href="#" id="1star" onclick="rating(this)"><span>Give it 1 star</span></a></li>
+                    </ul>
+                </div>
+                </td>
+            <td>推荐时间：{{ place.recommendTime }}小时</td>
+        </tr>
+        <tr>
+            <td colspan="2"><h4><b>J大厨 推荐：</b></h4>{{ place.experience }}</td>
+        </tr>
+        </tbody>
+        {% endfor %}
+    </table>
+
+        
+        
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script src="{{ STATIC_URL }}js/holder.js"></script>
+</body>
+</html>

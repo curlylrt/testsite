@@ -10,41 +10,6 @@
   <link rel="stylesheet" href="{{ STATIC_URL }}css/planresult.css">
 
  <title>Travel Plan</title>
- <style type="text/css">
-   .labels {
-     color: red;
-     background-color: white;
-     font-family: "Lucida Grande", "Arial", sans-serif;
-     font-size: 10px;
-     font-weight: bold;
-     text-align: center;
-     width: 40px;     
-     border: 2px solid black;
-     white-space: nowrap;
-   }
-
-      #map_canvas {
-        height: 100%;
-        width: 45%;
-        margin: 0px;
-        padding: 0px;
-        float: right;
-      }
-        #radio {
-            float: left;
-        }
-        #ins {
-         text-align: center;
-        }
-        .profileimg {
-            float: left;
-        }
- </style>
-<script>
-  $(function() {
-    $( "#radio" ).buttonset();
-  });
-</script>
  <script type="text/javascript" src="http://maps.google.com/maps/api/js?sensor=false"></script>
  <script type="text/javascript" src="{{ STATIC_URL }}js/markerwithlabel.js"></script>
  <script type="text/javascript" src="{{ STATIC_URL }}js/googlemap.js"></script>
@@ -61,6 +26,50 @@
 <div id="ins">
 <h3><font size="6">最优线路</font>拖拽以自定义顺序</h3>
 </div>
+<div id="tabs">
+<ul>
+{% for entry in sets %}
+    {% with day=forloop.counter %}
+    <li><a href="#tabs-{{ day }}">第{{ day }}天</a></li>
+    {% endwith %}
+{% endfor %}
+    <li><a href="#alltabs">All</a></li>
+
+</ul>
+{% for entry in sets %}
+    {% with day=forloop.counter %}
+    {% for item in entry %}
+        {% if forloop.counter0 == 0 %}
+            <div id="tabs-{{ day }}">
+            <div>
+            <h4>第{{ day }}天</h4>
+            <div class="row">
+        {% else %}
+        {% with name=place_list|get_place_name:item %}
+        {% with address=place_list|get_place_address:item %}
+            <div class="portlet">
+                <div class="portlet-header" name="{{ name }}">{{ name }}</div>
+                <div class="portlet-content">
+                <img class="profileimg" src="{{STATIC_URL }}images/{{image.image.name}}" height="150px" width="250px" />
+                <table><tr>
+                <td>{{ address }}</td>
+                <td><font color="blue">{{ place_list|get_place_recommendTime:item }}</font>hr</td>
+                </tr></table>
+                </div>
+            </div>
+
+        {% endwith %}
+        {% endwith %}
+        {% endif %}
+    {% endfor %}
+    {% endwith %}
+            </div>
+            </div>
+            </div> <!---tabs end--->
+{% endfor %}
+
+<div id="alltabs">
+
 <form class="planlist" action="{% url 'route'%}" method="post">
 {% csrf_token %}
 {% for entry in sets %}
@@ -85,10 +94,10 @@
                 </tr></table>
                 </div>
             </div>
-
 <script>
         addMarker("{{ place_list|get_place_address:item }}", "{{ name }}", "第{{ day }}天");
 </script>
+
         {% endwith %}
         {% endwith %}
         {% endif %}
@@ -97,6 +106,10 @@
             </div>
             </div>
 {% endfor %}
+</div>
+
+
+</div> <!---end tabs--->
 <input type="submit" value="route">
 </form>
 </body>

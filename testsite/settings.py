@@ -41,6 +41,7 @@ INSTALLED_APPS = (
     'trajectory',
     'menu',
     'accounts',
+    'index',
 )
 
 MIDDLEWARE_CLASSES = (

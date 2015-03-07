@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <title>Main Menu</title>
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/jquery-ui.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
+    <link  rel="stylesheet" href="{{ STATIC_URL }}css/carousel.css">
+
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/header.css">
+   <script src="{{ STATIC_URL }}js/jquery.js"></script>
+    <script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
+
+
+</head>
+<body>
+<div class="content">
+    {% include "index/header.html" %}
+    {% include "index/carousel.html" %}
+    {% include "index/feature.html" %}
+    {% include "index/journey.html" %}
+    {% include "index/locals.html" %}
+    
+</div>
+    {% include "index/footer.html" %}
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="{{ STATIC_URL }}js/bootstrap.js"></script>
+    <script src="{{ STATIC_URL }}js/holder.js"></script>
+
+</body>
+</html>
