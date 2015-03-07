@@ -27,6 +27,10 @@ def index(request):
     return render(request, 'trajectory/index.html', context)
 
 @register.filter
+def get_place(dictionary, key):
+    return dictionary.get(key)
+
+@register.filter
 def get_place_name(dictionary, key):
     return dictionary.get(key).name
 
