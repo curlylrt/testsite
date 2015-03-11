@@ -61,7 +61,7 @@
       <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
       <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
     </div><!-- /.carousel -->
-        
+    <div class="container">
     {% include "menu/order.html" %}
     
     <table class="place_table" style="width: 100%" CELLPADDING=6 RULES=GROUPS  FRAME=BOX>
@@ -71,37 +71,31 @@
        {% for place in place_list %}
         <tbody>
         <tr>
-            <td rowspan="4"><img src="{{STATIC_URL }}images/{{place.images.all.0}}" height="150px" width="250px" /></td>
+            <td width="25%" rowspan="4"><img src="{{STATIC_URL }}images/{{place.images.all.0}}" height="150px" width="150px" /></td>
         </tr>
         <tr>
-            <td>{{ place.name }}</td>
-            <td>
-                <input type="button" name="{{ place.name }}" id="{{ place.id }}" value="+加入菜单" onclick="addToMenu(this)">
-            </td>
+            <td width="60%">{{ place.name }}</td>
+			<td class="heart">
+				<img src="{{STATIC_URL }}images/heart_rating.png">
+		    </td>
+            <td class="score">{{ place.score }}</td>
         </tr>
+
         <tr>
-            <td>
-                <div class="starRate">
-                    <div>评价：{{ place.score }} 分<b></b></div>
-                    <ul>
-                        <li><a href="#" id="5star" onclick="rating(this)"><span>Give it 5 stars</span></a></li>
-                        <li><a href="#" id="4star" onclick="rating(this)"><span>Give it 4 stars</span><b></b></a></li>
-                        <li><a href="#" id="3star" onclick="rating(this)"><span>Give it 3 stars</span></a></li>
-                        <li><a href="#" id="2star" onclick="rating(this)"><span>Give it 2 stars</span></a></li>
-                        <li><a href="#" id="1star" onclick="rating(this)"><span>Give it 1 star</span></a></li>
-                    </ul>
-                </div>
-                </td>
-            <td>推荐时间：{{ place.recommendTime }}小时</td>
+            <td><h4><b>J大厨 推荐：</b></h4>{{ place.experience }}</td>
+            <td colspan="2" class="list-spend-time">{{ place.recommendTime }}hr</td>
         </tr>
-        <tr>
-            <td colspan="2"><h4><b>J大厨 推荐：</b></h4>{{ place.experience }}</td>
-        </tr>
+		<tr class="list-address-add">
+			<td class="list-address">地址： {{ place.address }}</td>
+			<td colspan="2" class="list-add-button" width="5%">
+				<img class="bt-red-bg" src="{{STATIC_URL }}images/red-plus.png" id="{{ place.id }}" name="{{ place.name }}" onclick="addToMenu(this)">
+			</td>
+		</tr>
         </tbody>
         {% endfor %}
     </table>
 
-        
+    </div>
         
     <!-- Bootstrap core JavaScript
     ================================================== -->
