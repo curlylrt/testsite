@@ -51,8 +51,8 @@
                 <div class="portlet-content">
                 <img class="profileimg" src="{{STATIC_URL }}images/{{place.images.all.0}}" height="150px" width="250px" />
                 <table><tr>
-                <td>{{ address }}</td>
-                <td><font color="blue">{{ place_list|get_place_recommendTime:item }}</font>hr</td>
+                <td>{{ place.address }}</td>
+                <td><font color="blue">{{ place.recommendTime }}</font>hr</td>
                 </tr></table>
                 </div>
             </div>
@@ -82,17 +82,17 @@
         {% with place=place_list|get_place:item %}
             <div class="portlet">
                 <div class="portlet-header" name="{{ place.name }}">{{ place.name }}</div>
-                <input type="hidden" class="{{ day }}" address="{{ address }}" name="{{ day }}" value="{{ item }}" \>
+                <input type="hidden" class="{{ day }}" address="{{ place.address }}" name="{{ day }}" value="{{ item }}" \>
                 <div class="portlet-content">
                 <img class="profileimg" src="{{STATIC_URL }}images/{{place.images.all.0}}" height="150px" width="250px" />
                 <table><tr>
-                <td>{{ address }}</td>
-                <td><font color="blue">{{ place_list|get_place_recommendTime:item }}</font>hr</td>
+                <td>{{ place.address }}</td>
+                <td><font color="blue">{{ place.recommendTime }}</font>hr</td>
                 </tr></table>
                 </div>
             </div>
 <script>
-        addMarker("{{ place_list|get_place_address:item }}", "{{ place.name }}", "第{{ day }}天");
+        addMarker("{{ place.address }}", "{{ place.name }}", "第{{ day }}天");
 </script>
 
         {% endwith %}

@@ -70,7 +70,7 @@ def partition(request):
         edges = list()
         vertices = request.POST.getlist('choice')
         limit = request.POST.get('timeLimit')
-        if limit is None:
+        if limit == '':
             limit = 8
         limit = float(limit)
         limit *= 60 * 60
@@ -87,9 +87,6 @@ def partition(request):
         global output
         output = ""
         output += "<br>limit: <br>" + str(limit)
-        output += "<br>result: <br>" + str(result)
-        output += "<br>vertice: <br>" + str(vertices) + "<br>egdes: <br>" + str(edges)
-        output += "<br>limit: " + str(limit)
         return HttpResponse(output)
         '''
     elif request.method == 'GET':
