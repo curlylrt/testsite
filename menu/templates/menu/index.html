@@ -9,6 +9,7 @@
     <link rel="stylesheet" href="{{ STATIC_URL }}css/order.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}css/bootstrap.css">
     <link  rel="stylesheet" href="{{ STATIC_URL }}css/carousel.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/header.css">
     <script src="{{ STATIC_URL }}js/jquery.js"></script>
     <script src="{{ STATIC_URL }}js/jquery-ui.js"></script>
 
@@ -22,46 +23,9 @@
 </head>
 <body id="body">
 
-        
-            <!-- Carousel
-    ================================================== -->
-    <div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="1"></li>
-        <li data-target="#myCarousel" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="item active">
-          <img src="{{ STATIC_URL }}res/GoldenGateBridge-001.jpg" alt="First slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{ STATIC_URL }}res/Ggb_by_night.jpg" alt="Second slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p>
-            </div>
-          </div>
-        </div>
-        <div class="item">
-          <img src="{{ STATIC_URL }}res/470360231-580.jpg"  alt="Third slide">
-          <div class="container">
-            <div class="carousel-caption">
-              <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p>
-            </div>
-          </div>
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" data-slide="prev"><span class="glyphicon glyphicon-chevron-left"></span></a>
-      <a class="right carousel-control" href="#myCarousel" data-slide="next"><span class="glyphicon glyphicon-chevron-right"></span></a>
-    </div><!-- /.carousel -->
+    {% include "index/header.html" %}
     <div class="container">
+    {% include "menu/base.html" %}
     {% include "menu/order.html" %}
     
     <table class="place_table" style="width: 100%" CELLPADDING=6 RULES=GROUPS  FRAME=BOX>
@@ -76,7 +40,7 @@
         <tr>
             <td width="60%">{{ place.name }}</td>
 			<td class="heart">
-				<img src="{{STATIC_URL }}images/heart_rating.png">
+				<img src="{{STATIC_URL }}res/heart_rating.png">
 		    </td>
             <td class="score">{{ place.score }}</td>
         </tr>
@@ -88,7 +52,7 @@
 		<tr class="list-address-add">
 			<td class="list-address">地址： {{ place.address }}</td>
 			<td colspan="2" class="list-add-button" width="5%">
-				<img class="bt-red-bg" src="{{STATIC_URL }}images/red-plus.png" id="{{ place.id }}" name="{{ place.name }}" onclick="addToMenu(this)">
+				<img class="bt-red-bg" src="{{STATIC_URL }}res/red-plus.png" id="{{ place.id }}" name="{{ place.name }}" onclick="addToMenu(this)">
 			</td>
 		</tr>
         </tbody>
@@ -97,6 +61,7 @@
 
     </div>
         
+    {% include "index/footer.html" %}
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
